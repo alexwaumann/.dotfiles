@@ -1,0 +1,11 @@
+# vim:ft=zsh
+# Filename: zprofile
+#
+# Sourced By: ZSH
+# Symlink To: $HOME/.zprofile
+#
+# Purpose: This file starts an X session if in a virtual terminal
+
+    if [[ ! $DISPLAY && $(tty) == "/dev/tty1" ]]; then
+    exec startx
+fi

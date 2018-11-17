@@ -1,0 +1,63 @@
+# vim:ft=zsh
+# Filename: aliases
+#
+# Sourced By: $ZSH/zshrc
+# Symlink To: N/A
+#
+# Purpose: This files contains all zsh aliases that are defined.
+
+# package manager
+alias xi="sudo xbps-install"
+alias xu="sudo xbps-install -Su"
+alias xr="sudo xbps-remove -R"
+alias xq="xbps-query"
+alias xs="xbps-query -Rs"
+alias xl="xbps-query -l"
+alias xL="xbps-query -L"
+
+# live tex package manager
+alias tlmgr="sudo tlmgr"
+alias tlmgrupdate="sudo tlmgr update --all"
+
+# system control
+alias init="sudo init" 
+alias sv="sudo sv"
+alias backlight="sudo backlight"
+
+# directories
+alias md="mkdir -p"
+alias rd="rmdir"
+alias l="ls -lhX --color"
+alias ls="ls -X --color"
+alias la="ls -AX --color"
+alias ll="ls -lAhX --color"
+
+# search
+alias grep="grep --color=auto"
+
+# launch programs
+alias pdf="zathura --fork"
+#alias vim="vim-huge-python3"
+alias v="nvim"
+alias vi="nvim"
+alias vim="nvim"
+
+# common typos
+alias claer="clear"
+alias clera="clear"
+alias clrea="clear"
+
+# navigate to and edit dotfiles
+alias dotfiles="cd $HOME/.dotfiles"
+
+alias ealiases="nvim $HOME/.dotfiles/zsh/aliases"
+alias ezshenv="nvim $HOME/.dotfiles/zsh/zshenv"
+alias ezsh="nvim $HOME/.dotfiles/zsh/zshrc"
+alias rzsh="source $HOME/.dotfiles/zsh/zshrc && clear"
+
+alias ei3="nvim $HOME/.dotfiles/i3/config"
+alias ebarconfig="nvim $HOME/.dotfiles/polybar/config"
+alias ebarmaster="nvim $HOME/.dotfiles/polybar/master.conf"
+alias ebarmodules="nvim $HOME/.dotfiles/polybar/modules.conf"
+
+alias envim="nvim $HOME/.dotfiles/nvim/init.vim"

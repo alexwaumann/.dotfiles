@@ -1,0 +1,6 @@
+# vim:ft=sh
+# Filename: xprofile
+#
+# Sourced by: xinitrc
+
+[ -d "$DOTFILES/bin" ] && PATH="$DOTFILES/bin:$PATH"

@@ -1,0 +1,23 @@
+# vim:ft=zsh
+# Filename: zshenv
+#
+# Sourced By: ZSH
+# Symlink To: $HOME/.zshenv
+#
+# Purpose: This file sets up environment variables.
+# NOTE: Modifications to $PATH should be done in $ZSH/zshrc, otherwise
+#       it will be overwritten by /etc/profile (sourced by ZSH after
+#       $HOME/.zshenv and before $HOME/.zshrc. This behaviour cannot
+#       by changed.
+
+export EDITOR="nvim"
+export VISUAL="nvim"
+export TERMINAL="urxvt"
+export BROWSER="qutebrowser"
+export PDF="zathura"
+
+export ZSH="$HOME/.dotfiles/zsh"
+export ZPLUG_HOME="$HOME/.zplug"
+export DOTFILES="$HOME/.dotfiles"
+export XDG_CONFIG_HOME="$HOME/.config"
+export LD_PRELOAD=/usr/lib/libwcwidth-icons.so

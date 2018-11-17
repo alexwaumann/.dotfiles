@@ -1,0 +1,45 @@
+#!/usr/bin/python3
+
+import sys
+import getopt
+
+def get_brightness():
+    backlight = open("/sys/class/backlight/intel_backlight/brightness", 'r')
+    brightness = backlight.readline().rstrip('\n')
+    backlight.close()
+    return int(brightness)
+
+def set_brightness(value):
+    backlight = open("/sys/class/backlight/intel_backlight/brightness", 'w')
+    backlight.write(value)
+    backlight.close()
+
+def main(argv):
+    option = argv[0]
+    arg = argv[1]
+    arg = int(arg) / 100
+    min = 0
+    max = 10000
+
+    # exit if trying to set/inc/decrease by more than 100%
+    if arg > 1 or arg < 0:
+        exit(0)
+
+    if option == 'set':
+        value = max * arg
+    elif option == 'inc':
+        value = get_brightness()
+        value += max * arg
+        if value > max:
+            value = max
+    elif option == 'dec':
+        value = get_brightness()
+        value -= max * arg
+        if value < min:
+            value = min
+    
+    set_brightness(str(int(value)))
+
+
+if __name__ == "__main__":
+    main(sys.argv[1:])

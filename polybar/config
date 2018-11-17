@@ -1,0 +1,17 @@
+;
+; File Includes
+;
+
+[section/base]
+include-file = /home/alex/.config/polybar/master.conf
+include-file = /home/alex/.config/polybar/modules.conf
+
+[bar/main]
+inherit = bar/master
+
+; Use $ xrandr -q | grep " connected" | cut -d ' ' -f1
+monitor =
+
+modules-left   = i3 xwindow network
+modules-center = date time
+modules-right  = battery backlight alsa memory cpu temperature

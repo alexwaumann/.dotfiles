@@ -1,0 +1,32 @@
+#!/bin/sh
+
+# set variable names
+userresources=$DOTFILES/x11/xresources
+usermodmap=$DOTFILES/x11/xmodmap
+userprofile=$DOTFILES/x11/xprofile
+
+# default xinit scripts
+if [ -d /etc/X11/xinit/xinitrc.d ]; then
+    for f in /etc/X11/xinit/xinitrc.d/*.sh ; do
+        [ -x "$f" ] && . "$f"
+    done
+    unset f
+fi
+
+# user init scripts and settings
+[ -f $usermodmap ] && xmodmap $usermodmap
+[ -f $userresources ] && xrdb -merge $userresources
+[ -f $userprofile ] && . $userprofile
+
+# settings for nvidia
+xrandr --setprovideroutputsource modesetting NVIDIA-0
+xrandr --auto
+
+# keyrepeat settings
+xset r rate 200 50
+
+# urxvt daemon
+urxvtd -q -o -f
+
+# start window manager
+exec i3
