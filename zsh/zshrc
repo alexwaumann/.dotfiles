@@ -59,7 +59,7 @@ POWERLEVEL9K_SHORTEN_DELIMITER='..'
 
 [ -f $ZSH/aliases ] && source $ZSH/aliases
 [ -f $ZPLUG_HOME/init.zsh ] && source $ZPLUG_HOME/init.zsh
-[ -f $HOME/.anaconda3 ] && source $HOME/.anaconda3
+[ -f $ZSH/anaconda3 ] && source $ZSH/anaconda3
 
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
 zplug "bhilburn/powerlevel9k", use:powerlevel9k.zsh-theme
