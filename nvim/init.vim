@@ -124,4 +124,14 @@ nnoremap Q @q
 let g:cpp_class_scope_highlight = 1
 let g:cpp_member_variable_highlight = 1
 
+let g:NERDSpaceDelims = 1
+let g:NERDDefaultAlign = 'left'
+let g:NERDCommentEmptyLines = 1
+let g:NERDTrimTrailingWhitespace = 1
+
+let g:deoplete#enable_at_startup = 1
+
+" deoplete tab-complete
+inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+
 tnoremap <Esc> <C-\><C-n>
