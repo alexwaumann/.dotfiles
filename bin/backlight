@@ -19,7 +19,7 @@ def main(argv):
     arg = argv[1]
     arg = int(arg) / 100
     min = 0
-    max = 10000
+    max = 20000
 
     # exit if trying to set/inc/decrease by more than 100%
     if arg > 1 or arg < 0:
