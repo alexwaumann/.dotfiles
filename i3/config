@@ -54,7 +54,7 @@ set $ws8 "8"
 set $ws9 "9"
 
 set $term      --no-startup-id urxvtc
-set $wallpaper void_wallpaper.png
+set $wallpaper default.jpg
 
 #####################
 #     Autostart     #
@@ -63,7 +63,7 @@ set $wallpaper void_wallpaper.png
 # run with reload
 exec_always --no-startup-id polybar-launch
 exec_always --no-startup-id xrdb -merge ~/.dotfiles/x11/xresources
-exec_always --no-startup-id feh --bg-scale /home/alex/.dotfiles/wallpapers/$wallpaper
+exec_always --no-startup-id feh --bg-scale /home/alexwaumann/.dotfiles/wallpapers/$wallpaper
 
 # run once
 exec --no-startup-id compton
