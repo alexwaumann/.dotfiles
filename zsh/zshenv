@@ -20,4 +20,3 @@ export ZSH="$HOME/.dotfiles/zsh"
 export ZPLUG_HOME="$HOME/.zplug"
 export DOTFILES="$HOME/.dotfiles"
 export XDG_CONFIG_HOME="$HOME/.config"
-export LD_PRELOAD=/usr/lib/libwcwidth-icons.so
