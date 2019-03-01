@@ -13,6 +13,7 @@
 
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
 zplug "denysdovhan/spaceship-prompt", use:spaceship.zsh, from:github, as:theme
+zplug "plugins/history-substring-search", from:oh-my-zsh
 
 if ! zplug check; then
     zplug install
