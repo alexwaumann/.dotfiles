@@ -7,8 +7,7 @@ if (ping -c 1 google.com) &> /dev/null; then
     echo "Done."
 fi
 
-if [ ! -f ~/.local/share/nvim/site/autoload/plug.vim ]; then
-    echo "Setting up vim plug neovim"
+if [ ! -f $HOME/.local/share/nvim/site/autoload/plug.vim ]; then echo "Setting up vim plug neovim"
     mkdir -p $HOME/.local/share/nvim/site/autoload
     ln -sf $DOTFILES/nvim/plug.vim ~/.local/share/nvim/site/autoload/plug.vim
 fi
