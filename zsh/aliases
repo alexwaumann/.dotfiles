@@ -4,7 +4,7 @@
 # Sourced By: $ZSH/zshrc
 # Symlink To: N/A
 #
-# Purpose: This files contains all zsh aliases that are defined.
+# Purpose: This files contains all of my personal zsh aliases
 
 # package manager
 alias pms="pacman -Ss"
@@ -13,22 +13,16 @@ alias pmu="sudo pacman -Syu"
 alias pmr="sudo pacman -Rns"
 alias pmq="sudo pacman -Qe"
 
-# live tex package manager
-alias tlmgr="sudo tlmgr"
-alias tlmgrupdate="sudo tlmgr update --all"
-
-# system control
-alias init="sudo init" 
-alias sv="sudo sv"
-alias backlight="sudo backlight"
+# mpv streaming
+alias m-live="mpv --untimed --profile=low-latency --no-cache"
 
 # directories
 alias md="mkdir -p"
 alias rd="rmdir"
-alias l="ls -lhX --color --group-directories-first"
-alias ls="ls -X --color --group-directories-first"
-alias la="ls -AX --color --group-directories-first"
-alias ll="ls -lAhX --color --group-directories-first"
+alias l="ls -lh --color --group-directories-first"
+alias ls="ls --color --group-directories-first"
+alias la="ls -A --color --group-directories-first"
+alias ll="ls -lAh --color --group-directories-first"
 
 # search
 alias grep="grep --color=auto"
@@ -36,25 +30,18 @@ alias grep="grep --color=auto"
 # launch programs
 alias pdf="zathura --fork"
 alias v="nvim"
-alias vi="nvim"
-alias vim="nvim"
-
-# common typos
-alias claer="clear"
-alias clera="clear"
-alias clrea="clear"
 
 # navigate to and edit dotfiles
-alias dotfiles="cd $HOME/.dotfiles"
+alias dotfiles="cd   $DOTFILES"
+alias ealiases="nvim $DOTFILES/zsh/aliases"
+alias efuncs="nvim   $DOTFILES/zsh/functions"
+alias ezshenv="nvim  $DOTFILES/zsh/zshenv"
+alias ezshrc="nvim   $DOTFILES/zsh/zshrc"
+alias rzsh="source   $DOTFILES/zsh/zshrc && clear"
+alias ei3="nvim      $DOTFILES/i3/config"
+alias envim="nvim    $DOTFILES/nvim/init.vim"
 
-alias ealiases="nvim $HOME/.dotfiles/zsh/aliases"
-alias ezshenv="nvim $HOME/.dotfiles/zsh/zshenv"
-alias ezsh="nvim $HOME/.dotfiles/zsh/zshrc"
-alias rzsh="source $HOME/.dotfiles/zsh/zshrc && clear"
+# chris' lib
+alias lib-down="rsync -h -r -t -v --ignore-existing  --info=stats1 complexjty@vps:/usr/share/library ~"
+alias fzf="fzf --color=bg+:232"
 
-alias ei3="nvim $HOME/.dotfiles/i3/config"
-alias ebarconfig="nvim $HOME/.dotfiles/polybar/config"
-alias ebarmaster="nvim $HOME/.dotfiles/polybar/master.conf"
-alias ebarmodules="nvim $HOME/.dotfiles/polybar/modules.conf"
-
-alias envim="nvim $HOME/.dotfiles/nvim/init.vim"

@@ -18,15 +18,8 @@ fi
 [ -f $userresources ] && xrdb -merge $userresources
 [ -f $userprofile ] && . $userprofile
 
-# settings for nvidia
-xrandr --setprovideroutputsource modesetting NVIDIA-0
-xrandr --auto
-
 # keyrepeat settings
 xset r rate 200 50
 
-# urxvt daemon
-urxvtd -q -o -f
-
 # start window manager
-exec i3
+exec i3 &> /dev/null

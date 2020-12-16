@@ -5,35 +5,45 @@
 #
 
 # Xresources       var      value       fallback
-set_from_resource  $bg      background  #19043C
-set_from_resource  $fg      background  #F1F1F1
-set_from_resource  $black   color0      #19043C
-set_from_resource  $red     color1      #EE79A9
-set_from_resource  $green   color2      #8C9440
-set_from_resource  $yellow  color3      #DE935F
-set_from_resource  $blue    color4      #05C6F1
-set_from_resource  $purple  color5      #85678F
-set_from_resource  $cyan    color6      #5E8D87
-set_from_resource  $grey    color7      #969CD3
-
-set $tblack #000000
+# set_from_resource  $bg      background  #19043C
+# set_from_resource  $fg      background  #F1F1F1
+# set_from_resource  $black   color0      #19043C
+# set_from_resource  $red     color1      #EE79A9
+# set_from_resource  $green   color2      #8C9440
+# set_from_resource  $yellow  color3      #DE935F
+# set_from_resource  $blue    color4      #05C6F1
+# set_from_resource  $purple  color5      #85678F
+# set_from_resource  $cyan    color6      #5E8D87
+# set_from_resource  $grey    color7      #969CD3
+#
+# set $tblack #000000
 
 # class                  bd     bg   txt      ind    child_bd
-client.focused           $grey  $bg  $fg      $blue  $grey
-client.unfocused         $grey  $bg  $tblack  $bg    $tblack
-client.focused_inactive  $grey  $bg  $tblack  $bg    $bg
-client.urgent            $red   $bg  $red     $red   $red
-client.placeholder       $grey  $bg  $bg      $bg    $bg
-client.background        $bg
+# client.focused           $grey  $bg  $fg      $blue  $grey
+# client.unfocused         $grey  $bg  $tblack  $bg    $tblack
+# client.focused_inactive  $grey  $bg  $tblack  $bg    $bg
+# client.urgent            $red   $bg  $red     $red   $red
+# client.placeholder       $grey  $bg  $bg      $bg    $bg
+# client.background        $bg
+
+# class                 border  bground text    indicator child_border
+client.focused          #6272A4 #6272A4 #F8F8F2 #6272A4   #6272A4
+client.focused_inactive #44475A #44475A #F8F8F2 #44475A   #44475A
+client.unfocused        #282A36 #282A36 #BFBFBF #282A36   #282A36
+client.urgent           #44475A #FF5555 #F8F8F2 #FF5555   #FF5555
+client.placeholder      #282A36 #282A36 #F8F8F2 #282A36   #282A36
+
+client.background       #F8F8F2
 
 # bord & title must be set to border pixel for gaps to work
 for_window [class="^.*"] border pixel 2
+for_window [title="Dream Shader"] floating enable
 hide_edge_borders smart
 
 font pango:DejaVu Sans Mono 10
 
 # $mod is Super or Alt
-#set $mod Mod4
+# set $mod Mod4
 set $mod Mod1
 
 # direction keys
@@ -42,7 +52,6 @@ set $down  k
 set $left  j
 set $right semicolon
 
-set $ws0 "0"
 set $ws1 "1"
 set $ws2 "2"
 set $ws3 "3"
@@ -52,21 +61,24 @@ set $ws6 "6"
 set $ws7 "7"
 set $ws8 "8"
 set $ws9 "9"
+set $ws0 "10"
 
-set $term      --no-startup-id urxvtc
-set $wallpaper default.jpg
+assign [title="Remmina Remote Desktop Client"] $ws5
+assign [title="^Terraria"] $ws0
+
+set $term      --no-startup-id alacritty
 
 #####################
 #     Autostart     #
 #####################
 
 # run with reload
-exec_always --no-startup-id polybar-launch
 exec_always --no-startup-id xrdb -merge ~/.dotfiles/x11/xresources
-exec_always --no-startup-id feh --bg-scale /home/alexwaumann/.dotfiles/wallpapers/$wallpaper
+exec_always --no-startup-id xset r rate 200 50
+exec_always --no-startup-id feh --bg-fill ~/.dotfiles/wallpapers/active
 
 # run once
-exec --no-startup-id compton
+exec --no-startup-id picom
 
 #####################
 #     Bindings      #
@@ -108,6 +120,17 @@ bindsym $mod+7    workspace $ws7
 bindsym $mod+8    workspace $ws8
 bindsym $mod+9    workspace $ws9
 bindsym $mod+0    workspace $ws0
+
+workspace $ws1 output DP-4
+workspace $ws2 output DP-4
+workspace $ws3 output DP-4
+workspace $ws4 output DP-4
+workspace $ws5 output DP-4
+workspace $ws6 output DP-0
+workspace $ws7 output DP-0
+workspace $ws8 output DP-0
+workspace $ws9 output DP-0
+workspace $ws0 output DP-0
 
 # move focused container to workspace
 bindsym $mod+Shift+1    move container to workspace $ws1

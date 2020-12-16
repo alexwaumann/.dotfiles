@@ -12,8 +12,8 @@ if [ ! -f $HOME/.local/share/nvim/site/autoload/plug.vim ]; then echo "Setting u
     ln -sf $DOTFILES/nvim/plug.vim ~/.local/share/nvim/site/autoload/plug.vim
 fi
 
-if [ ! -f ~/.vim/autoload/plug.vim ]; then
-    echo "Setting up vim plug for vim"
-    mkdir -p $HOME/.vim/autoload
-    ln -sf $DOTFILES/nvim/plug.vim ~/.vim/autoload/plug.vim
-fi
+#if [ ! -f ~/.vim/autoload/plug.vim ]; then
+#    echo "Setting up vim plug for vim"
+#    mkdir -p $HOME/.vim/autoload
+#    ln -sf $DOTFILES/nvim/plug.vim ~/.vim/autoload/plug.vim
+#fi

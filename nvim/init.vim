@@ -4,24 +4,58 @@
 call plug#begin('~/.local/share/nvim/plugged')
 
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh'
+    \ }
+
+Plug 'jackguo380/vim-lsp-cxx-highlight'
+Plug 'tikhomirov/vim-glsl'
+
 Plug 'scrooloose/nerdcommenter'
+Plug 'junegunn/goyo.vim'
 Plug 'tpope/vim-surround'
 Plug 'chrisbra/Colorizer'
-Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'itchyny/lightline.vim'
-Plug 'KeitaNakamura/neodark.vim'
+Plug 'dhruvasagar/vim-table-mode'
+Plug 'thaerkh/vim-workspace'
+
+Plug 'joshdick/onedark.vim'
+Plug 'drewtempelmeyer/palenight.vim'
+Plug 'dracula/vim', {'as': 'dracula'}
 
 call plug#end()
+
+set termguicolors
+
+let g:deoplete#enable_at_startup = 1
+
+
+let s:ccls_settings = {
+    \ 'highlight': {'lsRanges': v:true},
+    \}
+
+let s:ccls_command = ['ccls', '-init=' . json_encode(s:ccls_settings)]
+
+let g:LanguageClient_serverCommands = {
+    \ 'c': s:ccls_command,
+    \ 'cpp': s:ccls_command,
+    \ }
 
 let mapleader="\<SPACE>"
 set timeoutlen=2000
 
+nnoremap <F5>          :call LanguageClient_contextMenu()<CR>
+nnoremap <silent> <Leader>K    :call LanguageClient#textDocument_hover()<CR>
+
 " syntax highlighting settings
 syntax enable
 set background=dark
-let g:lightline = {'colorscheme': 'neodark'}
-let g:neodark#terminal_transparent = 1
-colorscheme neodark
+let g:lightline = {'colorscheme': 'onedark'}
+colorscheme dracula
+
+hi Normal guibg=NONE ctermbg=NONE
 
 " split navigation
 nnoremap <Leader>j <C-W><C-H>
@@ -75,7 +109,7 @@ set list listchars=tab:>>,trail:~
 
 if has('multi_byte')
     set listchars=tab:»»,trail:•
-    set fillchars=vert:┃ showbreak=↪
+    set fillchars=vert:┃ showbreak=
 endif
 
 " fast scrolling
@@ -99,7 +133,7 @@ highlight IncSearch ctermfg=yellow
 
 set colorcolumn=110
 
-set cursorline
+" set cursorline
 
 " Use <C-L> to clear the highlighting of :set hlsearch.
 if maparg('<C-L>', 'n') ==# ''
@@ -121,6 +155,11 @@ nnoremap ; :
 
 nnoremap Q @q
 
+" easy navigation for soft-wrapped text in normal mode
+nnoremap j gj
+nnoremap k gk
+set linebreak
+
 let g:cpp_class_scope_highlight = 1
 let g:cpp_member_variable_highlight = 1
 
@@ -129,7 +168,8 @@ let g:NERDDefaultAlign = 'left'
 let g:NERDCommentEmptyLines = 1
 let g:NERDTrimTrailingWhitespace = 1
 
-let g:deoplete#enable_at_startup = 1
+let g:workspace_autosave = 0
+nnoremap <Leader>w :ToggleWorkspace<CR>
 
 " deoplete tab-complete
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"

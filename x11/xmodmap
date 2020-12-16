@@ -1,2 +1,6 @@
-clear lock
-keycode 66 = Escape NoSymbol Escape
+clear Lock
+
+keycode 66 = Escape Caps_Lock Escape
+keycode  9 = F12 0x7E
+
+

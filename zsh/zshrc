@@ -6,10 +6,14 @@
 #
 # Purpose:
 
-[ -f $ZSH/aliases ] && source $ZSH/aliases
-[ -f $ZSH/prompt ] && source $ZSH/prompt
+[ -f $ZSH/prompt    ] && source $ZSH/prompt
+[ -f $ZSH/aliases   ] && source $ZSH/aliases
+[ -f $ZSH/functions ] && source $ZSH/functions
 [ -f $ZPLUG_HOME/init.zsh ] && source $ZPLUG_HOME/init.zsh
-[ -f $ZSH/anaconda3 ] && source $ZSH/anaconda3
+#[ -f $ZSH/anaconda3 ] && source $ZSH/anaconda3
+
+#export PATH="$PATH:/home/alex/.matlab/bin"
+export PATH="$PATH:/home/alex/bin"
 
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
 zplug "denysdovhan/spaceship-prompt", use:spaceship.zsh, from:github, as:theme
@@ -20,3 +24,5 @@ if ! zplug check; then
 fi
 
 zplug load
+
+

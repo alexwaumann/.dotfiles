@@ -12,7 +12,7 @@
 
 export EDITOR="nvim"
 export VISUAL="nvim"
-export TERMINAL="urxvt"
+export TERMINAL="alacritty"
 export BROWSER="qutebrowser"
 export PDF="zathura"
 
@@ -20,3 +20,9 @@ export ZSH="$HOME/.dotfiles/zsh"
 export ZPLUG_HOME="$HOME/.zplug"
 export DOTFILES="$HOME/.dotfiles"
 export XDG_CONFIG_HOME="$HOME/.config"
+export GTK2_RC_FILES="$HOME/.themes/Dracula/gtk-2.0/gtkrc"
+export GTK_THEME="Dracula"
+export QT_STYLE_OVERRIDE="gtk2"
+
+export CC=clang
+export CXX=clang++

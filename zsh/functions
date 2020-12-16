@@ -1,0 +1,65 @@
+# vim:ft=zsh
+# Filename: functions
+#
+# Sourced By: $ZSH/zshrc
+# Symlink To: N/A
+#
+# Purpose: This files contains all of my personal zsh functions
+
+lf()  { cd $HOME/library; pdf $(fzf); cd - > /dev/null }
+jump() { eval "cd $(cat ~/.jumps | fzf --height 20)" }
+
+img() { feh --force-aliasing --draw-filename --draw-tinted --scale-down $1 & }
+imgzoom() { feh --force-aliasing --draw-filename --draw-tinted --zoom max $1 & }
+
+# meson functions
+m-gcc()   { CC="ccache gcc" CXX="ccache g++" meson --buildtype=plain $@ }
+m-clang() { CC="ccache clang" CXX="ccache clang++" meson --buildtype=plain $@ }
+m-optim() { CC="ccache clang" CXX="ccache clang++" meson --buildtype=release $@ }
+m-debug() { CC="ccache clang" CXX="ccache clang++" meson -DDEBUG=true --buildtype=debug $@ }
+m-san()   { CC="ccache clang" CXX="ccache clang++" meson -DDEBUG=true -Db_sanitize=address,undefined -Db_lundef=false --buildtype=plain $@ }
+
+# wifi setup/management
+set-network-interface() {
+    if [[ ! -z "$1" ]]; then
+        mkdir -p $DOTFILES/network
+        echo $1 > $DOTFILES/network/interface
+    fi
+}
+
+list-networks() {
+    if [[ -f $DOTFILES/network/interface ]]; then
+        interface=$(cat $DOTFILES/network/interface)
+        sudo iw dev $interface scan | grep "SSID:"
+    fi
+}
+
+add-network() {
+    if [[ ! -z $1 && ! -z $2 ]]; then
+        ssid=$(wpa_passphrase $1 $2 | grep ssid)
+        psk=$(wpa_passphrase $1 $2 | grep -E '[^#]'psk)
+        echo "\nnetwork={\n\t$ssid\n$psk\n}" >> $DOTFILES/network/wpa_supplicant.conf
+    fi
+}
+
+wifi() {
+    if [[ -f $DOTFILES/network/interface ]]; then
+        interface=$(cat $DOTFILES/network/interface)
+        sudo wpa_supplicant -B -i $interface -c /etc/wpa_supplicant/wpa_supplicant.conf &> /dev/null
+        sudo dhcpcd $interface &> /dev/null
+    else
+        echo "run set-network-interface [interface]"
+    fi
+}
+
+kwifi() {
+    sudo pkill dhcpcd
+    sudo pkill wpa_supplicant
+}
+
+# manage downloads
+rmdl() {
+    if [[ ! -z "$1" ]]; then
+        rm $HOME/downloads/*.$1
+    fi
+}
